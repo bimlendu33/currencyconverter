@@ -1,0 +1,33 @@
+<div class="cards-wrapper">
+    <div class="row mt-5">
+        <h4>
+            <b>
+                Similar Currencies Value
+            </b>
+        </h4>
+    </div>
+    <div class="row">
+        <ng-container *ngFor="let currencyType of relatedCovertedCurrency">
+            <div class="col-sm-4 my-3" *ngIf="currencyType.success">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span>Currency:<b>
+                                    {{currencyType.query.to}}</b>
+                            </span>
+                            <br/>
+                            <span>Current Rate:<b>
+                                    {{currencyType.info.rate}}</b>
+                            </span>
+                            <br/>
+                            <span>Currency value Value:<b>
+                                    {{currencyType.result}}</b>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

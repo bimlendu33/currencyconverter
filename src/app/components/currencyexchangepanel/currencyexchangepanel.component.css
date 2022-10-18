@@ -1,0 +1,72 @@
+.convert-button {
+  width: 100%;
+}
+
+.swap-currency-icon i.fa.fa-exchange {
+  font-size: 2rem;
+  color: grey;
+  position: relative;
+  top: 1.5rem;
+  padding: 0rem 1rem;
+}
+
+.currency-panel-from-to {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.currency-exchanged-value {
+  width: 60%;
+}
+
+.currency-exchanged-value input {
+  padding: 1.2rem 1rem;
+}
+
+.conversion-value {
+  display: flex;
+}
+
+.more-details-button {
+  width: 40%;
+  padding: 0rem 1rem;
+  top: 1rem;
+  position: relative;
+}
+
+.fa-exchange {
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .swap-currency-icon i.fa.fa-exchange {
+    font-size: 1rem;
+    position: relative;
+    top: 2rem;
+  }
+  .form-group {
+    width: 30vw;
+  }
+}
+
+/* @media (max-width: 720px) {
+  .form-group {
+    width: auto;
+  }
+}
+ */
+@media only screen and (min-width: 1025px) {
+  .form-group {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .more-details-button {
+    padding: 0rem 1rem;
+    top: 0.5rem;
+    position: relative;
+  }
+}

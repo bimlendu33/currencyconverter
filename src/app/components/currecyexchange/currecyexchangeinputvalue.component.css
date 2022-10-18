@@ -1,0 +1,72 @@
+.currency-exchange-wrapper {
+  margin: 2rem 0rem;
+}
+
+.test-container {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+}
+
+.test-item-left {
+  padding: 10px;
+  flex: 40%;
+}
+
+.test-item-right {
+  padding: 10px;
+  flex: 60%;
+}
+
+input#amountvalue {
+  width: 80%;
+}
+
+input#currentvalue {
+  width: 80%;
+  font-weight: 600;
+}
+
+.current-exchange-value-wrapper {
+  margin-top: 4rem;
+}
+
+.enter-amount-wrapper {
+  margin: 1rem;
+}
+
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width: 800px) {
+  .test-container {
+    flex-direction: column;
+  }
+
+  input#amountvalue {
+    width: 100%;
+  }
+
+  input#currentvalue {
+    width: 100%;
+  }
+
+  .current-exchange-value-wrapper {
+    margin-top: 1rem;
+  }
+
+  .test-item-right {
+    padding: 0px 30px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .test-item-left {
+    max-width: 30rem;
+  }
+  .test-item-right {
+    max-width: 50rem;
+  }
+  .test-container {
+    max-width: 80rem;
+  }
+}
