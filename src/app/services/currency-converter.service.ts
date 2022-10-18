@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { appKey } from '../constants/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class CurrencyConverterService {
   constructor(private http: HttpClient) { }
 
   getCurrencyDetailsForConversion(fromCurrency: string, toCurrency: string, amount: number): Observable<any> {
-    let headers = new HttpHeaders().set('apikey', 'mr4FcWagOvLziy009RDdcGqFfEzvqli4');
+    let headers = new HttpHeaders().set('apikey', appKey);
     const url = `${this.apiRoot}/convert?to=${toCurrency}&from=${fromCurrency}&amount=${amount}`;
     return this.http.get(url, { headers: headers });
   }
