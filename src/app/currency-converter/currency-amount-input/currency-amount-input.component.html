@@ -1,0 +1,32 @@
+<div class="currency-exchange-wrapper">
+  <h4>
+    <b> Currency Exchanger </b>
+  </h4>
+  <div class="test-container">
+    <div class="test-item-left">
+      <div class="enter-amount-wrapper">
+        <div class="form-group">
+          <label for="amountvalue">Amount</label>
+          <input
+            [(ngModel)]="amountSelected"
+            type="number"
+            class="form-control"
+            id="amountvalue"
+            min="1"
+            placeholder="Enter value"
+            (keyup)="amoutnvalueChaged()"
+          />
+        </div>
+        <div class="current-exchange-value-wrapper">
+          <input class="form-control text-center" id="currentvalue" disabled [(ngModel)]="defaultMarketCurrency" />
+        </div>
+      </div>
+    </div>
+    <div class="test-item-right">
+      <app-currency-from-to-input
+        [selectedAmount]="amountSelected"
+        (currentCurrencyInfo)="getCurrencyInfo($event)"
+      ></app-currency-from-to-input>
+    </div>
+  </div>
+</div>

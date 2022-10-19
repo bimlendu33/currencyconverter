@@ -1,0 +1,1 @@
+// All app level enums should go into this folder.
