@@ -8,6 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class CurrencyDetailsComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
