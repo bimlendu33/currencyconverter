@@ -29,7 +29,7 @@ export class CurrencyAmountInputComponent implements OnInit {
     });
   }
 
-  amoutnvalueChaged() {
+  amoutnvalueChaged(): void {
     this.currencySharedvalues.setSelectedAmountSubject(this.amountSelected);
   }
 

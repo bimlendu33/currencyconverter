@@ -89,7 +89,7 @@ export class CurrencyFromToInputComponent implements OnInit {
       });
   }
 
-  showMoreDetails() {
+  showMoreDetails(): void {
     this.detailsView = !this.detailsView;
 
     this.currencyConvertService.getCurrenciestList().subscribe((res: any) => {
@@ -105,7 +105,7 @@ export class CurrencyFromToInputComponent implements OnInit {
     });
   }
 
-  getRelatedCurrencies() {
+  getRelatedCurrencies(): void {
     this.similarCurrencies.forEach((currencycode: string) => {
       this.currencyConvertService
         .getCurrencyDetailsForConversion(currencycode, this.selectedToCurrency, this.selectedAmount!)

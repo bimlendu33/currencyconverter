@@ -28,7 +28,7 @@ export class SimilarPupularCurrenciesComponent implements OnInit {
     });
   }
 
-  getRelatedCurrencies() {
+  getRelatedCurrencies(): void {
     this.currencyService
       .getSelectedAmountValue()
       .pipe(

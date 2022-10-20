@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AsyncSubject, BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ICurrencyLatest } from 'src/app/core/models/currency-converter.model';
 
 @Injectable({ providedIn: 'root' })
@@ -9,7 +9,7 @@ export class SimilarCurrencyService {
   setSimilarCurrencies(value: ICurrencyLatest): void {
     this.similarCurrenciesList.next(this.similarCurrenciesList.value.concat(value));
   }
-  getSimilarCurrenciesList() {
+  getSimilarCurrenciesList(): Observable<ICurrencyLatest[]> {
     return this.similarCurrenciesList;
   }
 }

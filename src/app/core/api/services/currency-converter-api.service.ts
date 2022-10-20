@@ -19,7 +19,7 @@ export class CurrencyConverterApiService {
     return this.http.get(url, { headers: headers });
   }
 
-  getCurrenciestList() {
+  getCurrenciestList(): Observable<any> {
     const headers = this.createHeaders();
 
     const url = `${this.apiRoot}/fixer/symbols`;
