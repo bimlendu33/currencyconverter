@@ -12,7 +12,7 @@ This is an angular app for converting EUR to USD as default conversion
 	Please paste that key into Environments file of this project inorder to run this project else this project will not work.
 
 #Not covereted features 
-	Details page could not be worked on because of time constraint.
+	Details page Chart part -> 4th Acceptance criteria could not be worked on because of time constraint.
 	
 
 #Good Angular features used for implementation in this project
@@ -31,3 +31,6 @@ This is an angular app for converting EUR to USD as default conversion
 	Covert button for the conversion
 	Popular 9 more related conversions for the amount field
 	Responsiveness has also been taken care
+	Currency details page has also been created
+	toggling bwtween details page and home page has also been done
+	swapping between currencies covered
