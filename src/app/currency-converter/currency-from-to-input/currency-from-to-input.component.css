@@ -60,6 +60,14 @@
   }
 }
 
+@media (max-width: 800px) {
+  .show-back-home {
+    float: right;
+    position: relative;
+    top: -13rem;
+  }
+}
+
 @media (max-width: 350px) {
   .form-group {
     width: auto;
