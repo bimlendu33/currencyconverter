@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { CurrencyConverterApiService } from 'src/app/core/api/services/currency-converter-api.service';
 import { ICurrencyLatest } from 'src/app/core/models/currency-converter.model';
 import { CurrencyStateService } from 'src/app/shared/services/currency-state.service';
-import { shareReplay, skipWhile } from 'rxjs/operators';
 import { SimilarCurrencyService } from 'src/app/shared/services/similar-currency.service';
 
 @Component({
@@ -23,6 +21,7 @@ export class CurrencyFromToInputComponent implements OnInit {
   detailsView: boolean = false;
   selectedRoute: string = '';
   similarCurrencies: string[] = ['GIP', 'CAD', 'AUD', 'CHF', 'JOD', 'OMR', 'BHD', 'KYD', 'AMD'];
+  currencyName: string = '';
 
   @Input() selectedAmount: number | undefined;
   @Output() currentCurrencyInfo = new EventEmitter();
@@ -92,6 +91,18 @@ export class CurrencyFromToInputComponent implements OnInit {
 
   showMoreDetails() {
     this.detailsView = !this.detailsView;
+
+    this.currencyConvertService.getCurrenciestList().subscribe((res: any) => {
+      if (res.symbols[this.selectedFromCurrency] !== undefined && this.detailsView) {
+        this.currencySharedService.setCurrencyName(res.symbols[this.selectedFromCurrency]);
+      } else {
+        if (this.detailsView) {
+          this.currencySharedService.setCurrencyName(this.selectedFromCurrency);
+        } else {
+          this.currencySharedService.setCurrencyName('');
+        }
+      }
+    });
   }
 
   getRelatedCurrencies() {

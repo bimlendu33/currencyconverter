@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first, map, mergeMap, takeLast } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { CurrencyConverterApiService } from 'src/app/core/api/services/currency-converter-api.service';
 import { ICurrencyLatest } from 'src/app/core/models/currency-converter.model';
 import { CurrencyStateService } from 'src/app/shared/services/currency-state.service';

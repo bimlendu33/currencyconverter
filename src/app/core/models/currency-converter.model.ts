@@ -22,3 +22,8 @@ export interface IAPIError {
   type: string;
   info: string;
 }
+
+export interface ICurrencyType {
+  success: boolean;
+  symbols: Object;
+}

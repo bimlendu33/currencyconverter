@@ -7,6 +7,16 @@ export class CurrencyStateService {
   fromCurrency = new ReplaySubject<string>();
   toCurrency = new ReplaySubject<string>();
 
+  currencyName = new BehaviorSubject<string>('');
+
+  getCurrencyName(): Observable<string> {
+    return this.currencyName;
+  }
+
+  setCurrencyName(value: string): void {
+    this.currencyName.next(value);
+  }
+
   setSelectedAmountSubject(value: number): void {
     this.amountToBeConverted.next(value);
   }

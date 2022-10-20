@@ -1,6 +1,6 @@
 <div class="currency-exchange-wrapper">
   <h4>
-    <b> Currency Exchanger </b>
+    <b><span *ngIf="currencyName.length === 0">Currency Exchanger</span> {{ currencyName }}</b>
   </h4>
   <div class="main-container">
     <div class="main-item-left">

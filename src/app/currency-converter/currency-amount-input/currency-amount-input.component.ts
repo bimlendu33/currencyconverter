@@ -12,6 +12,7 @@ export class CurrencyAmountInputComponent implements OnInit {
   defaultMarketCurrency: string = '';
   latestRatesList: string[] = [];
   detailsView: boolean = false;
+  currencyName: string = '';
 
   @Output() sendCurrencyInfo = new EventEmitter();
 
@@ -22,12 +23,10 @@ export class CurrencyAmountInputComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.router.url.split('/').indexOf('details') > -1) {
-      this.detailsView = true;
-    } else {
-      this.detailsView = false;
-    }
     this.currencySharedvalues.setSelectedAmountSubject(this.amountSelected);
+    this.currencySharedvalues.getCurrencyName().subscribe((res) => {
+      this.currencyName = res;
+    });
   }
 
   amoutnvalueChaged() {
