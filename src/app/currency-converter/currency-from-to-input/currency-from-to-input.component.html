@@ -1,3 +1,6 @@
+<div class="show-back-home" *ngIf="detailsView">
+  <button class="btn btn-sm btn-primary" (click)="showMoreDetails()">Back to Home</button>
+</div>
 <div class="currency-panel-wrapper">
   <div class="currency-panel-from-to">
     <div class="from-container">
@@ -9,9 +12,11 @@
           aria-label="example"
           [(ngModel)]="selectedFromCurrency"
           (change)="selectValueChanged()"
+          [disabled]="detailsView ? true : false"
         >
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
+          <option value="GBP">GBP</option>
         </select>
       </div>
     </div>
@@ -30,6 +35,7 @@
         >
           <option value="EUR">EUR</option>
           <option value="USD">USD</option>
+          <option value="GBP">GBP</option>
         </select>
       </div>
     </div>
@@ -43,7 +49,7 @@
     <button class="btn btn-primary btn-sm convert-button" (click)="convertAmount()">Convert</button>
   </div>
   <div class="conversion-value my-3">
-    <div class="currency-exchanged-value">
+    <div class="detailsView ? currency-exchanged-value-full ? currency-exchanged-value">
       <input
         type="number"
         [(ngModel)]="convertedAmount"
@@ -53,8 +59,8 @@
         disabled="disabled"
       />
     </div>
-    <div class="more-details-button">
-      <button class="btn btn-sm btn-primary w-100">More Details</button>
+    <div class="more-details-button" *ngIf="!detailsView">
+      <button (click)="showMoreDetails()" class="btn btn-sm btn-primary w-100">More Details</button>
     </div>
   </div>
 </div>

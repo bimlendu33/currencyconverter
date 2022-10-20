@@ -9,9 +9,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { CurrencyConverterModule } from './currency-converter/currency-converter.module';
-import { CurrencyStateService } from './shared/services/currency-state.service';
-import { CurrencyConverterDetailsModule } from './currency-converter-details/currency-converter-details.module';
-
+import { CurrencyConverterEurGbpModule } from './currency-converter-eur-gbp/currency-converter-eur-gbp.module';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -23,9 +21,9 @@ import { CurrencyConverterDetailsModule } from './currency-converter-details/cur
     AppRoutingModule,
     FormsModule,
     CurrencyConverterModule,
-    CurrencyConverterDetailsModule
+    CurrencyConverterEurGbpModule
   ],
-  providers: [CurrencyStateService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

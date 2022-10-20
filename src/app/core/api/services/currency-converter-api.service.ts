@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { singleConvertValue } from 'src/app/mocks/currency-convertor-mocks';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,7 +15,10 @@ export class CurrencyConverterApiService {
     // TODO -> we can later move this to global HTTP interceptor to make it common among service
     let headers = new HttpHeaders().set('apikey', environment.appKey);
 
-    const url = `${this.apiRoot}/convert?to=${toCurrency}&from=${fromCurrency}&amount=${amount}`;
+    headers.set('Access-Control-Allow-Origin', '*');
+    headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+    const url = `${this.apiRoot}/fixer/convert?&to=${toCurrency}&from=${fromCurrency}&amount=${amount}`;
     return this.http.get(url, { headers: headers });
   }
 }

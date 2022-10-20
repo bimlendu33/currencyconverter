@@ -3,16 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'eur-usd',
     loadChildren: () => import('./currency-converter/currency-converter.module').then((m) => m.CurrencyConverterModule),
   },
   {
-    path: 'currency-converter-details',
-    loadChildren: () =>
-      import('./currency-converter-details/currency-converter-details.module').then(
-        (m) => m.CurrencyConverterDetailsModule
-      ),
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'eur-usd',
   },
+  {
+    path: 'eur-gbp',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('./currency-converter-eur-gbp/currency-converter-eur-gbp.module').then(
+        (m) => m.CurrencyConverterEurGbpModule
+      ),
+  }
 ];
 
 @NgModule({

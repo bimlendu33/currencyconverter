@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  appKey :'yn2oCGHGCtQpIk5UAm0XIYFr8PDMDZYV',
-  rootAPI: 'https://api.apilayer.com/fixer'
+  appKey :'',
+  rootAPI: 'https://api.apilayer.com'
 };
 
 /*

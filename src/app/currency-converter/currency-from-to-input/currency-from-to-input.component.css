@@ -20,6 +20,9 @@
 .currency-exchanged-value {
   width: 60%;
 }
+.currency-exchanged-value-full {
+  width: 100%;
+}
 
 .currency-exchanged-value input {
   padding: 1.2rem 1rem;
@@ -40,6 +43,12 @@
   cursor: pointer;
 }
 
+.show-back-home {
+  float: right;
+  position: relative;
+  top: -3rem;
+}
+
 @media (max-width: 1024px) {
   .swap-currency-icon i.fa.fa-exchange {
     font-size: 1rem;
@@ -51,12 +60,12 @@
   }
 }
 
-/* @media (max-width: 720px) {
+@media (max-width: 350px) {
   .form-group {
     width: auto;
   }
 }
- */
+
 @media only screen and (min-width: 1025px) {
   .form-group {
     width: 20rem;

@@ -5,13 +5,13 @@
     </h4>
   </div>
   <div class="row">
-    <ng-container *ngFor="let currencyType of relatedCovertedCurrency">
+    <ng-container *ngFor="let currencyType of relatedCovertedCurrency | slice: 0:9">
       <div class="col-sm-4 my-3" *ngIf="currencyType.success">
         <div class="card">
           <div class="card-body">
             <p class="card-text">
               <span>
-                Currency:<b> {{ currencyType.query.to }}</b>
+                Currency:<b> {{ currencyType.query.from }}</b>
               </span>
               <br />
               <span>

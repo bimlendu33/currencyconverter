@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CurrencyStateService {
   amountToBeConverted = new BehaviorSubject<number>(1);
-  fromCurrency = new BehaviorSubject<string>('');
-  toCurrency = new BehaviorSubject<string>('');
+  fromCurrency = new ReplaySubject<string>();
+  toCurrency = new ReplaySubject<string>();
 
   setSelectedAmountSubject(value: number): void {
     this.amountToBeConverted.next(value);
@@ -29,5 +29,9 @@ export class CurrencyStateService {
 
   geToCurrencyValue(): Observable<string> {
     return this.toCurrency;
+  }
+
+  public ngOnDestroy(): void {
+    this.amountToBeConverted.unsubscribe(); // or something similar
   }
 }

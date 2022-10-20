@@ -2,19 +2,19 @@
   margin: 2rem 0rem;
 }
 
-.test-container {
+.main-container {
   display: flex;
   flex-direction: row;
   border: 2px solid lightgrey;
   border-radius: 5px;
 }
 
-.test-item-left {
+.main-item-left {
   padding: 10px;
   flex: 40%;
 }
 
-.test-item-right {
+.main-item-right {
   padding: 10px;
   flex: 60%;
 }
@@ -29,7 +29,7 @@ input#currentvalue {
 }
 
 .current-exchange-value-wrapper {
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 
 .enter-amount-wrapper {
@@ -38,7 +38,7 @@ input#currentvalue {
 
 /* Responsive layout - makes a one column-layout instead of two-column layout */
 @media (max-width: 800px) {
-  .test-container {
+  .main-container {
     flex-direction: column;
   }
 
@@ -54,19 +54,27 @@ input#currentvalue {
     margin-top: 1rem;
   }
 
-  .test-item-right {
+  .main-item-right {
     padding: 0px 30px;
   }
 }
 
+@media (max-width: 650px) {
+  .input-amount-title {
+    font-size: 16px;
+    display: inline-block;
+    width: 40vw;
+  }
+}
+
 @media only screen and (min-width: 1025px) {
-  .test-item-left {
+  .main-item-left {
     max-width: 30rem;
   }
-  .test-item-right {
+  .main-item-right {
     max-width: 50rem;
   }
-  .test-container {
+  .main-container {
     max-width: 80rem;
   }
 }

@@ -19,3 +19,7 @@ option:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+
+.currency-converter-wrapper {
+  margin: 0rem 2rem;
+}

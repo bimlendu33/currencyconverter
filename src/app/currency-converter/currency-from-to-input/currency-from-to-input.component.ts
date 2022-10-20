@@ -1,7 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { CurrencyConverterApiService } from 'src/app/core/api/services/currency-converter-api.service';
 import { ICurrencyLatest } from 'src/app/core/models/currency-converter.model';
 import { CurrencyStateService } from 'src/app/shared/services/currency-state.service';
+import { shareReplay, skipWhile } from 'rxjs/operators';
+import { SimilarCurrencyService } from 'src/app/shared/services/similar-currency.service';
 
 @Component({
   selector: 'app-currency-from-to-input',
@@ -14,55 +19,65 @@ export class CurrencyFromToInputComponent implements OnInit {
   convertedAmount: number | undefined;
   errorExist: boolean = false;
   errorMsg: string = '';
+  currencyList: string[] = ['EUR, USD, GBP'];
+  detailsView: boolean = false;
+  selectedRoute: string = '';
+  similarCurrencies: string[] = ['GIP', 'CAD', 'AUD', 'CHF', 'JOD', 'OMR', 'BHD', 'KYD', 'AMD'];
 
   @Input() selectedAmount: number | undefined;
   @Output() currentCurrencyInfo = new EventEmitter();
 
   constructor(
     private currencyConvertService: CurrencyConverterApiService,
-    private currencySharedService: CurrencyStateService
+    private currencySharedService: CurrencyStateService,
+    private router: Router,
+    private similarCurrenciesList: SimilarCurrencyService
   ) {}
 
   ngOnInit(): void {
-    this.getCurrencyDetails();
+    if (this.router.url.indexOf('eur-gbp') > 0) {
+      this.selectedToCurrency = 'GBP';
+    }
+    if (this.router.url.indexOf('eur-usd') > 0) {
+      this.selectedToCurrency = 'USD';
+    }
     this.currencySharedService.setFromCurrencySubject(this.selectedFromCurrency);
-    this.currencySharedService.setToCurrencySubject(this.selectedToCurrency);
+    this.getCurrenciesDetails();
   }
 
   convertAmount(): void {
     this.errorExist = false;
     this.errorMsg = '';
 
-    this.currencySharedService.getSelectedAmountValue().subscribe((res) => {
-      if (res <= 0 || this.selectedFromCurrency === this.selectedToCurrency) {
-        if (res <= 0) {
-          this.errorExist = true;
-          this.errorMsg = 'amount must be greater than equals to 1';
-        } else {
-          this.errorExist = true;
-          this.errorMsg = 'From and To can not be same';
-        }
+    if (this.selectedAmount! <= 0 || this.selectedFromCurrency === this.selectedToCurrency) {
+      if (this.selectedAmount! <= 0) {
+        this.errorExist = true;
+        this.errorMsg = 'amount must be greater than equals to 1';
       } else {
-        this.errorExist = false;
-        this.errorMsg = '';
-        this.getCurrencyDetails();
+        this.errorExist = true;
+        this.errorMsg = 'From and To can not be same';
       }
-    });
+    } else {
+      this.errorExist = false;
+      this.errorMsg = '';
+      this.getCurrenciesDetails();
+      this.getRelatedCurrencies();
+    }
   }
 
   swapExchangeValues(): void {
     const fromValue = this.selectedFromCurrency;
     this.selectedFromCurrency = this.selectedToCurrency;
     this.selectedToCurrency = fromValue;
+
+    this.currencySharedService.setFromCurrencySubject(this.selectedFromCurrency);
   }
 
   selectValueChanged(): void {
-    this.currencySharedService.setFromCurrencySubject(this.selectedFromCurrency);
-    this.currencySharedService.setToCurrencySubject(this.selectedToCurrency);
     this.errorExist = false;
   }
 
-  getCurrencyDetails(): void {
+  getCurrenciesDetails(): void {
     this.currencyConvertService
       .getCurrencyDetailsForConversion(this.selectedFromCurrency, this.selectedToCurrency, this.selectedAmount!)
       .subscribe((res: ICurrencyLatest) => {
@@ -73,5 +88,19 @@ export class CurrencyFromToInputComponent implements OnInit {
           selectedToCurrency: this.selectedToCurrency,
         });
       });
+  }
+
+  showMoreDetails() {
+    this.detailsView = !this.detailsView;
+  }
+
+  getRelatedCurrencies() {
+    this.similarCurrencies.forEach((currencycode: string) => {
+      this.currencyConvertService
+        .getCurrencyDetailsForConversion(currencycode, this.selectedToCurrency, this.selectedAmount!)
+        .subscribe((res: ICurrencyLatest) => {
+          this.similarCurrenciesList.setSimilarCurrencies(res);
+        });
+    });
   }
 }

@@ -2,8 +2,8 @@
   <h4>
     <b> Currency Exchanger </b>
   </h4>
-  <div class="test-container">
-    <div class="test-item-left">
+  <div class="main-container">
+    <div class="main-item-left">
       <div class="enter-amount-wrapper">
         <div class="form-group">
           <label for="amountvalue">Amount</label>
@@ -14,7 +14,7 @@
             id="amountvalue"
             min="1"
             placeholder="Enter value"
-            (keyup)="amoutnvalueChaged()"
+            (change)="amoutnvalueChaged()"
           />
         </div>
         <div class="current-exchange-value-wrapper">
@@ -22,11 +22,14 @@
         </div>
       </div>
     </div>
-    <div class="test-item-right">
+    <div class="main-item-right">
       <app-currency-from-to-input
         [selectedAmount]="amountSelected"
         (currentCurrencyInfo)="getCurrencyInfo($event)"
       ></app-currency-from-to-input>
     </div>
+  </div>
+  <div class="similar-currency-list">
+    <app-similar-pupular-currencies></app-similar-pupular-currencies>
   </div>
 </div>
